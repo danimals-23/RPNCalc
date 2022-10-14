@@ -1,0 +1,19 @@
+{ testfile1.cylc }
+print
+file
+print
+clear
+1
+print
+2
+print
++
+print
+5
+print
++
+print
+{ fib.cylc }
+print
+file
+print

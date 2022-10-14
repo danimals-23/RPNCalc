@@ -1,0 +1,213 @@
+/* 
+ * Project 2: CalcYouLater
+ * CS 15
+ * Daniel Peng
+ * 
+ * Date: 28 February 2022
+ * 
+ * README
+ * 
+ */
+
+
+(B) Purpose of CalcYouLater:
+    The Purpose of this program is to represent a special kind of calculator
+    which the user can interact with. This calculator uses RPN, or Reverse
+    Polish Notation, to calculate and evaluate expression. For instance,
+    inputting the following: 1 2 +, would result in the calculator
+    calculating the value 3.
+
+    This calculator can also take in strings and commands, which are stored
+    within 'rstrings'. These rstrings can also hold filenames, which the
+    calculator can run as well, as long as the files give correct commands.
+
+    Essentially, this calculator is comparable to a new language that takes
+    in rstrings. This calculator can even read in files that represent 
+    functions and use recursion to calculate values, such as the n'th
+    fibonacci number, or the factorial of a given number n.
+
+
+(C) Acknowledgements:
+    I received help from the TA's on piazza, and also the TA who helped me
+    on my design check-off.
+
+
+(E) Compile/Run:
+    In order to compile this program, the Makefile provided has all the rules.
+    To compile, type 'make', which will compile all the files necessary to
+    run the calculator.
+
+    To run this program, type ./CalcYouLater into the terminal, and begin
+    giving the calculator commands through the terminal. One may also pass
+    in files as input stream with '<'.
+
+
+(D) Files provided and purpose:
+
+    Datum.h
+        This file contains the class declaration for the Datum class.
+        The Datum object essentially is a container for either an integer,
+        a boolean, or an rstring.
+
+    DatumStack.h
+        This file contains the class declaration for the DatumStack class.
+        A DatumStack is essentially a stack which holds Datum objects.
+        The user can add to the stack, remove, pop, and perform many
+        function on the DatumStack.
+
+    DatumStack.cpp
+        This file contains the implementation of all functions in the
+        DatumStack class, as defined in the previous file above.
+
+    parser.cpp
+        This file contains a single function, parseRString(). The purpose of
+        this function is to read in an rstring without the first bracket,
+        and return the entire rstring after reading in a stream. This function
+        will throw a runtime error if the stream is not a well-defined
+        rstring. More information can be found within the file.
+
+    RPNCalc.h
+        This file contains the class declaration for RPNCalc. An RPNCalc is a
+        special reverse-Polish-notation calculator, which can take in rstrings
+        and perform many commands.
+
+    RPNCalc.cpp
+        This file contains th implementation of all functions in the RPNCalc
+        class.
+    
+    unit_tests.h
+        This file contains all tests which were performed on DatumStack and
+        parser.cpp. Note: for week 1, parser.cpp test are commented out.
+
+    parseRStringExample1.txt
+        This file contains the first example input from the project specs,
+        which I passed into my parseRString as an ifstream.
+
+    parseRStringExample2.txt
+        This file contains the second example input from the project specs,
+        which I passed into my parseRString as an ifstream.
+
+    parseRStringFail.txt
+        This file contains a failing input, which would not be a well
+        defined rstring. I tested this to make sure that my parseRString
+        would throw an exception.
+
+    parseRStringSimple.txt
+        This file contains a simple input for parseRString, which I tested
+        to make sure that my function could return the correct output string.
+
+    testfile1.cylc
+        This file contains a list of commands that can be given to the
+        calculator to read in as an input file stream. This specific
+        file tests to make sure that my implementation of the 'if' command
+        is working correctly.
+
+    testfile2.cylc
+        This file also contains a list of commans that can be given to the
+        calculator to read in. This specific file tests to make sure that
+        my implementation can read from a file.
+
+        All of the .cylc files were used in diff testing, including the ones
+        provided (fact.cylc, fib.cylc, n_fibs.cylc)
+    
+    testfile3.cylc
+        This file specifically tested to make sure that the output of my
+        implementation was the same as the reference implementation when
+        passing n_fibs.cylc into the calculator.
+
+    calculate.cylc
+        This file was used to test a nested rstring, and also calls a ton of 
+        random commands to make sure that my calculator does not crash or 
+        have any valgrind errors.
+        Additionally, this file contains a ton of different commands, which
+        were run to make sure that my program didn't have any valgrind errors.
+
+    README
+        The current file you are reading. This file contains more detail about
+        the project, such as testing details, files, etc.
+
+    Makefile
+        Contains all commands for compiling, linking, and making executables.
+
+    
+(F) Data Structures Used
+    The main data structure that was used in this project was the stack. The
+    stack is a data structure which is a last-in-first-out type of structure.
+    That is, the last element which is added to a stack will be the first
+    element that is removed/popped.
+
+    In the case of CalcYouLater, stacks are an extremely fitting data
+    structure to use. Because the calculator uses Reverse Polish Notation, it
+    makes sense to use a stack, which will continue popping the top of the
+    stack and applying operations to the elements below. For instance, if we
+    were to calculate: 1 2 + using a stack, we would first add 1, then 2, then
+    +, to the stack. When evaluating the expression, we can simply pop the '+'
+    off the stack, then pop the '2' off, then the '1', and apply the operator
+    to the two numbers. Then, we can store the result back on the stack,
+    which will be 3.
+
+    Generally, because we are implementing a Reverse Polish Notation
+    calculator, a stack makes it much easier to implement, as the logic of a
+    RPN calculator follows that of a stack, i.e., taking from the top of the
+    stack (reading an equation from left ot right).
+
+    Implementing the stack:
+    For this project, in order to implement the stack, I used c++'s vector
+    class to represent the stack. The implementation of the stack can be
+    found in DatumStack.h and DatumStack.cpp. The vector class made it very
+    easy to implement the stack, as I only had to push to the back of the
+    vector and pop from the back (the back of the vector represents the
+    top of the stack, and the front of the vector is the bottom of the stack).
+
+
+(G) Testing (Week 1 and Week 2):
+    WEEK 1:
+        For week 1, rigorous testing of datumStack was done in my unit_test.h
+        file. I made sure that every function in DatumStack was functioning
+        correctly, and also tested all the edge cases that I could think of.
+
+        To test parser.cpp, I added my parseRString function to the top of
+        my unit_test.h file temporarily. In order to test input streams, I
+        created a couple of text files, which I opened as ifstreams, and then
+        passed those ifstreams into my parseRString function.
+
+        Additionally, I also tested parseRString using stringstream objects,
+        where I stored a stream that was to be read by my parseRString
+        function.
+
+        Some edge cases for parser.cpp were: when the inputstream ended, but
+        the brackets did not match. In this case, I coded my parseRString so
+        that it would throw a runtime_error, which I would catch in my
+        unit_tests.h file.
+
+    WEEK 2:
+        For week 2, most of my testing was done by running my implementation
+        of RPNCalc and comparing it to the reference implementation. Because
+        all of the functions in RPNCalc are private (other than run), I had to
+        comment out most of week 2's unit testing. However, most of my testing
+        was done with diff testing different .cylc files.
+
+        Below are some examples of how my testing was done:
+
+            I created multiple .cylc files with my own commands and ran them
+            through the reference implementation and my own implementation.
+            
+            ./theCalcYouLater < testfile1.cylc > ref.cout
+            ./CalcYouLater < testfile1.cylc > my.cout
+            diff ref.cout my.cout
+            * thank you Dohyun Ahn on Piazza for the help with diff testing!
+
+            Above is an example of how I diff tested my implementation with
+            different .cylc command files.
+
+        In unit_test, I copied some of the code from specific functions, like
+        'removeBrackets' and 'removeBracketsFile' to test. These functions
+        were easier to test with unit_test, because they simply took in a 
+        string as a parameter and returned a string. Thus, it was easy to 
+        unit test with cassert.
+
+        Overall, most of my testing was done with diff testing. A good example
+        of that can be found in the calculate.cylc file, where I basically
+        ran a ton of different commands and situations to test if my
+        implementation would match up with the reference implementation's
+        cerr and cout.

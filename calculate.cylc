@@ -1,0 +1,98 @@
+{ 1 2 + { 8 2 - } }
+exec print
+exec
+file print
++ print
+exec print
+/ print
+mod print
+exec print
+file print
++ print
+mod print
+file print
+if print
+clear print
+{ if } print
+exec print
++ print
+== print
+file print
+exec print
+<= print
+exec print
+>= print
+if print
+== print
+file print
+clear print
+10 9 - print
+22 print
++ print
+34 print
+>= print
+32 print
+9 print
+== print
+#t print
+#f print
+>= print
+#t print
+#f print
+== print
+clear print
++ print
+mod print
+1 + 2 + 3 + 4 print
+9 print
+#t print
+<= print
+#f print
+0 print
+== print
+clear print
+{ } { } == print
+#t 0 == print
+clear print
+#f print
+0 print
+== print
+1 print
+#t print
+0 print
+== print
+== print
+file print
+exec print
+{ { add.cylc } file exec } exec print
+{{12}23{}{}{}{}} print
+#t #f - print
+1 #f - print
+{ } { } + print
+{ 1 } { 2 } - print
+#f #t mod print
+{ 1 } { 2 } / print
+#t #f / print
+{ 1 } { 2 } mod print
+#t #f < print
+{ 12 + } { 33 } < print
+#f { 23 33 + } { 34 21 + } if print
+clear print
+39 print
+dup print
+drop print
+drop print
+77 print
+34 print
+
+-11 print
+2 print
+/ print
+-11 print
+-2 print
+/ print
+-2 2 == print
+
+#t { 123 } #f if print 
+{ 123 } { 234 } { 333 } if print
+#f { 3 } { 3 } if print

@@ -1,0 +1,62 @@
+6
+{ n_fibs.cylc }
+file
+clear
+clear
++
+not
+10
+2
+mod
+0
+mod
+clear
+6
+{ fact.cylc }
+file
+clear
+{ 1 2 < }
+{ 1 2 > }
+{ 2 1 > }
+{ 2 1 < }
+{ 1 1 <= }
+{ 1 1 >= }
+{ #t #t == }
+{ #f #t == }
+{ 1 1 == }
+{ 1 2 == }
+exec
+print
+drop
+exec
+print
+drop
+exec
+print
+drop
+exec
+print
+drop
+exec
+print
+drop
+exec
+print
+drop
+exec
+print
+drop
+exec
+print
+drop
+exec
+print
+drop
+exec
+print
+drop
+exec
+print
+drop
+exec
+print
